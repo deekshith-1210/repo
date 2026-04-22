@@ -2,9 +2,14 @@
  hosts:web
  become:yes
  tasks:
+ - name: Ensure destination directory exists
+ file:
+   path:/opt/app
+   state: directory
+   mode:'0755'
   -name:Copy JAR file
    copy:
-    src: /var/lib/jenkins/workspace/mavenproj/maven-example/target/maven-example -1.0-SNAPSHOT.jar
-    dest: /opt/maven-example-1.0-SNAPSHOT.jar
+    src: /var/lib/jenkins/workspace/program 8/target/maven-example -1.0-SNAPSHOT.jar
+    dest: /opt/app/maven-example-1.0-SNAPSHOT.jar
   -name:Run application
    shell:nohup java -jar /opt/maven-example-1.0-SNAPSHOT.jar&
